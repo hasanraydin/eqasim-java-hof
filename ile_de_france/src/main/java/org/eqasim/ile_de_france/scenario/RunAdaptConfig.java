@@ -34,11 +34,13 @@ public class RunAdaptConfig {
 
 		eqasimConfig.setCostModel(TransportMode.car, IDFModeChoiceModule.CAR_COST_MODEL_NAME);
 		eqasimConfig.setCostModel(TransportMode.pt, IDFModeChoiceModule.PT_COST_MODEL_NAME);
-		eqasimConfig.setCostModel(TransportMode.drt, "ZeroCostModel");
+		eqasimConfig.setCostModel("drt_1", IDFModeChoiceModule.DRT1_COST_MODEL_NAME);
+		eqasimConfig.setCostModel("drt_2", IDFModeChoiceModule.DRT2_COST_MODEL_NAME);
 
 		eqasimConfig.setEstimator(TransportMode.car, IDFModeChoiceModule.CAR_ESTIMATOR_NAME);
 		eqasimConfig.setEstimator(TransportMode.bike, IDFModeChoiceModule.BIKE_ESTIMATOR_NAME);
-		eqasimConfig.setEstimator(TransportMode.drt, IDFModeChoiceModule.DRT_ESTIMATOR_NAME);
+		eqasimConfig.setEstimator("drt_1", IDFModeChoiceModule.DRT1_ESTIMATOR_NAME);
+		eqasimConfig.setEstimator("drt_2", IDFModeChoiceModule.DRT2_ESTIMATOR_NAME);
 		eqasimConfig.setEstimator("bicycle", "ZeroUtilityEstimator");
 
 		DiscreteModeChoiceConfigGroup dmcConfig = (DiscreteModeChoiceConfigGroup) config.getModules()
@@ -47,10 +49,6 @@ public class RunAdaptConfig {
 		dmcConfig.setModeAvailability(IDFModeChoiceModule.MODE_AVAILABILITY_NAME);
 		dmcConfig.setSelector("MultinomialLogit");
 		// Calibration results for 5%
-
-		// Set up choice model
-		eqasimConfig.setCostModel("drt", "ZeroCostModel");
-		eqasimConfig.setEstimator("drt", "DrtUtilityEstimator");
 
 		// Add bicycle to cached modes
 		Set<String> cachedModes = new HashSet<>(dmcConfig.getCachedModes());
@@ -70,7 +68,8 @@ public class RunAdaptConfig {
 
 		// Add DRT to cached modes
 		cachedModes = new HashSet<>(dmcConfig.getCachedModes());
-		cachedModes.add("drt");
+		cachedModes.add("drt_1");
+		cachedModes.add("drt_2");
 		dmcConfig.setCachedModes(cachedModes);
 
 		if (eqasimConfig.getSampleSize() == 0.05) {
@@ -105,12 +104,19 @@ public class RunAdaptConfig {
 		bicycleInteractionParams.setTypicalDuration(1.0);
 		scoringConfig.addActivityParams(bicycleInteractionParams);
 
-		// Add DRT mode parameters
-		ModeParams drtModeParams = new ModeParams("drt");
-		drtModeParams.setConstant(0.0);
-		drtModeParams.setMarginalUtilityOfDistance(0.0);
-		drtModeParams.setMarginalUtilityOfTraveling(-0.5); // Make it more attractive than other modes
-		scoringConfig.addModeParams(drtModeParams);
+		// Add DRT_1 mode parameters
+		ModeParams drt1ModeParams = new ModeParams("drt_1");
+		drt1ModeParams.setConstant(0.0);
+		drt1ModeParams.setMarginalUtilityOfDistance(0.0);
+		drt1ModeParams.setMarginalUtilityOfTraveling(-0.5); // Make it more attractive than other modes
+		scoringConfig.addModeParams(drt1ModeParams);
+
+		// Add DRT_2 mode parameters
+		ModeParams drt2ModeParams = new ModeParams("drt_2");
+		drt2ModeParams.setConstant(0.0);
+		drt2ModeParams.setMarginalUtilityOfDistance(0.0);
+		drt2ModeParams.setMarginalUtilityOfTraveling(-0.5); // Make it more attractive than other modes
+		scoringConfig.addModeParams(drt2ModeParams);
 
 		// Add DRT interaction activity
 		ActivityParams drtInteractionParams = new ActivityParams("drt interaction");

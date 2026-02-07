@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.eqasim.ile_de_france.munich.MunichDrt1CostModel;
+import org.eqasim.ile_de_france.munich.MunichDrt2CostModel;
+import org.eqasim.ile_de_france.munich.MunichDrt1UtilityEstimator;
+import org.eqasim.ile_de_france.munich.MunichDrt2UtilityEstimator;
 import org.eqasim.core.components.config.EqasimConfigGroup;
 import org.eqasim.core.simulation.mode_choice.AbstractEqasimExtension;
 import org.eqasim.core.simulation.mode_choice.ParameterDefinition;
@@ -39,11 +43,13 @@ public class IDFModeChoiceModule extends AbstractEqasimExtension {
 
 	public static final String CAR_COST_MODEL_NAME = "IDFCarCostModel";
 	public static final String PT_COST_MODEL_NAME = "MunichPtCostModel";
-	public static final String DRT_COST_MODEL_NAME = "ZeroCostModel";
+	public static final String DRT1_COST_MODEL_NAME = "MunichDrt1CostModel";
+	public static final String DRT2_COST_MODEL_NAME = "MunichDrt2CostModel";
 
 	public static final String CAR_ESTIMATOR_NAME = "IDFCarUtilityEstimator";
 	public static final String BIKE_ESTIMATOR_NAME = "IDFBikeUtilityEstimator";
-	public static final String DRT_ESTIMATOR_NAME = "DrtUtilityEstimator";
+	public static final String DRT1_ESTIMATOR_NAME = "MunichDrt1UtilityEstimator";
+	public static final String DRT2_ESTIMATOR_NAME = "MunichDrt2UtilityEstimator";
 
 	public static final String ISOLATED_OUTSIDE_TOUR_FINDER_NAME = "IsolatedOutsideTrips";
 
@@ -59,11 +65,13 @@ public class IDFModeChoiceModule extends AbstractEqasimExtension {
 
 		bindCostModel(CAR_COST_MODEL_NAME).to(IDFCarCostModel.class);
 		bindCostModel(PT_COST_MODEL_NAME).to(MunichPtCostModel.class);
-		bindCostModel(TransportMode.drt).to(ZeroCostModel.class);
+		bindCostModel(DRT1_COST_MODEL_NAME).to(MunichDrt1CostModel.class);
+		bindCostModel(DRT2_COST_MODEL_NAME).to(MunichDrt2CostModel.class);
 
 		bindUtilityEstimator(CAR_ESTIMATOR_NAME).to(IDFCarUtilityEstimator.class);
 		bindUtilityEstimator(BIKE_ESTIMATOR_NAME).to(IDFBikeUtilityEstimator.class);
-		bindUtilityEstimator(DRT_ESTIMATOR_NAME).to(DrtUtilityEstimator.class);
+		bindUtilityEstimator(DRT1_ESTIMATOR_NAME).to(MunichDrt1UtilityEstimator.class);
+		bindUtilityEstimator(DRT2_ESTIMATOR_NAME).to(MunichDrt2UtilityEstimator.class);
 		bind(IDFSpatialPredictor.class);
 		bind(DrtPredictor.class).to(DefaultDrtPredictor.class);
 
