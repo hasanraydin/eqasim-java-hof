@@ -41,6 +41,7 @@ public class IDFModeParameters extends ModeParameters {
 		parameters.drt.betaWaitingTime_u_min = -0.15;				//base value = -0.1
 		parameters.drt.betaAccessEgressTime_u_min = -0.0304;		//base value = -0.0804
 
+
 		// PT
 		parameters.pt.alpha_u = 0.0;								//eqasim-bavaria-main value
 		parameters.pt.betaLineSwitch_u = -0.417658;					//eqasim-bavaria-main value
