@@ -19,45 +19,50 @@ public class IDFModeParameters extends ModeParameters {
 
 	public static IDFModeParameters buildDefault() {
 		IDFModeParameters parameters = new IDFModeParameters();
+
 		// Access
-		parameters.betaAccessTime_u_min = -0.031239;
+		parameters.betaAccessTime_u_min = -0.031239;		            //eqasim-bavaria-main value			
 
 		// Cost
-		parameters.betaCost_u_MU = -0.310998;
-		parameters.lambdaCostEuclideanDistance = -0.257501;
-		parameters.referenceEuclideanDistance_km = 4.4;
+		parameters.betaCost_u_MU = -0.310998;							//eqasim-bavaria-main value
+		parameters.lambdaCostEuclideanDistance = -0.257501;				//eqasim-bavaria-main value
+		parameters.referenceEuclideanDistance_km = 4.4;					//eqasim-bavaria-main value
 
 		// Car
-		parameters.car.alpha_u = 0.4; // -0.201465;
-		parameters.car.betaTravelTime_u_min = -0.042431;
+		parameters.car.alpha_u = 0.4;								    //eqasim-bavaria-main value
+		parameters.car.betaTravelTime_u_min = -0.042431;				//eqasim-bavaria-main value
 
-		// Car passenger
-		parameters.idfCarPassenger.alpha_u = -1.4; // -1.713201;
-		parameters.idfCarPassenger.betaDrivingPermit_u = -0.835542;
-		parameters.idfCarPassenger.betaInVehicleTravelTime_u_min = -0.069976;
+		//parameters.car.additionalAccessEgressWalkTime_min = 4.0;	//base value = 4.0
+		//parameters.car.constantParkingSearchPenalty_min = 4.0;		//base value = 4.0
 
-		// PT
-		parameters.pt.alpha_u = 0.0;
-		parameters.pt.betaLineSwitch_u = -0.417658;
-		parameters.pt.betaInVehicleTime_u_min = -0.025501;
-		parameters.pt.betaWaitingTime_u_min = -0.021801;
-
-		parameters.idfPt.betaDrivingPermit_u = -0.531426;
-		parameters.idfPt.onlyBus_u = -1.416309;
-
-		// Bike
-		parameters.bike.alpha_u = -0.5; // -2.927596;
-		parameters.bike.betaTravelTime_u_min = -0.093485;
-
-		// Walk
-		parameters.walk.alpha_u = 1.8; // 1.685152;
-		parameters.walk.betaTravelTime_u_min = -0.162285;
+		//parameters.idfCar.betaInsideUrbanArea = -0.5;				//base value = -0.5
+		//parameters.idfCar.betaCrossingUrbanArea = -1.0;				//base value = -1.0
 
 		// Drt
 		parameters.drt.alpha_u = 0.0;								//base value = 0.0
 		parameters.drt.betaTravelTime_u_min = -0.08;			    //base value = -0.2
 		parameters.drt.betaWaitingTime_u_min = -0.02;				//base value = -0.1
 		parameters.drt.betaAccessEgressTime_u_min = -0.2;		    //base value = -0.0804
+
+
+		// PT
+		parameters.pt.alpha_u = 0.0;								//eqasim-bavaria-main value
+		parameters.pt.betaLineSwitch_u = -0.417658;					//eqasim-bavaria-main value
+		parameters.pt.betaInVehicleTime_u_min = -0.025501;			//eqasim-bavaria-main value
+		parameters.pt.betaWaitingTime_u_min = -0.021801;			//eqasim-bavaria-main value
+		//parameters.pt.betaAccessEgressTime_u_min = -0.0804;			//base value = -0.0804
+
+		// Bike
+		parameters.bike.alpha_u = -0.5;								//eqasim-bavaria-main value
+		parameters.bike.betaTravelTime_u_min = -0.093485;			//eqasim-bavaria-main value
+		//parameters.bike.betaAgeOver18_u_a = -0.0496;				//base value = -0.0496
+
+		//parameters.idfBike.betaInsideUrbanArea = 1.5;				//base value = 1.5
+
+		// Walk
+		parameters.walk.alpha_u = 1.8;								//eqasim-bavaria-main value
+		parameters.walk.betaTravelTime_u_min = -0.162285;			//eqasim-bavaria-main value
+
 
 		return parameters;
 	}
