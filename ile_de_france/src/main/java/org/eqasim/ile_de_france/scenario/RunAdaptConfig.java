@@ -38,10 +38,9 @@ public class RunAdaptConfig {
 		eqasimConfig.setCostModel("drt_2", IDFModeChoiceModule.DRT2_COST_MODEL_NAME);
 
 		eqasimConfig.setEstimator(TransportMode.car, IDFModeChoiceModule.CAR_ESTIMATOR_NAME);
-		eqasimConfig.setEstimator(TransportMode.bike, IDFModeChoiceModule.BIKE_ESTIMATOR_NAME);
+		eqasimConfig.setEstimator("bicycle", IDFModeChoiceModule.BIKE_ESTIMATOR_NAME);
 		eqasimConfig.setEstimator("drt_1", IDFModeChoiceModule.DRT1_ESTIMATOR_NAME);
 		eqasimConfig.setEstimator("drt_2", IDFModeChoiceModule.DRT2_ESTIMATOR_NAME);
-		eqasimConfig.setEstimator("bicycle", "ZeroUtilityEstimator");
 
 		DiscreteModeChoiceConfigGroup dmcConfig = (DiscreteModeChoiceConfigGroup) config.getModules()
 				.get(DiscreteModeChoiceConfigGroup.GROUP_NAME);
